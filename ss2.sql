@@ -120,3 +120,59 @@ alter table tbl_Courses drop start_date;
 alter table tbl_Courses modify column courses_name varchar(1000);
 
 -- bai7
+drop table tbl_Books;
+drop table tbl_Authors;
+drop table tbl_Genres;
+create table tbl_Books(
+	book_id int primary key AUTO_INCREMENT,
+    title varchar(255) not null,
+    publication_year varchar(255) not null,
+    author_id int,
+    foreign key (author_id)  references tbl_Authors(author_id),
+    genres_id int,
+    foreign key (genres_id)  references tbl_Genres(genres_id)
+);
+
+create table tbl_Authors(
+	author_id int primary key AUTO_INCREMENT,
+	name varchar(255) not null,
+    nationality varchar(255)
+);
+
+create table tbl_Genres(
+	genres_id int primary key AUTO_INCREMENT,
+    genres_name varchar(255) not null,
+	description Text,
+    created_at datetime
+);
+
+-- bai8
+
+drop table tbl_students;
+drop table tbl_classes;
+drop table tbl_instructors;
+create table tbl_instructors(
+	intructors_id int primary key AUTO_INCREMENT,
+    name varchar(255) not null,
+    expretise varchar(255)
+);
+
+create table tbl_classes(
+	classes_id int primary key AUTO_INCREMENT,
+	classes_name varchar(255) not null,
+	start_date date,
+    intructors_id int,
+    foreign key (intructors_id)  references tbl_instructors(intructors_id)
+);
+
+create table tbl_students(
+	genres_id int primary key AUTO_INCREMENT,
+    name varchar(255) not null,
+    email varchar(255) not null unique,
+    phone varchar(15),
+    class_id int,
+    foreign key (classes_id)  references tbl_students(classes_id)
+);
+
+alter table tbl_students add address varchar(255);
+alter table tbl_students drop phone;
