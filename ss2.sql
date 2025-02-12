@@ -170,8 +170,8 @@ create table tbl_students(
     name varchar(255) not null,
     email varchar(255) not null unique,
     phone varchar(15),
-    class_id int,
-    foreign key (classes_id)  references tbl_students(classes_id)
+    classes_id int,
+    foreign key (classes_id)  references tbl_classes(classes_id)
 );
 
 alter table tbl_students add address varchar(255);
